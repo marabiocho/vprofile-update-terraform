@@ -33,7 +33,7 @@ pipeline {
 
         stage('Terraform Validate') {
             steps {
-                sh 'terraform Validate'
+                sh 'terraform validate'
             }
         }
 
