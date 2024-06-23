@@ -11,9 +11,29 @@ pipeline {
             }
         }
 
+        
+
         stage('Terraform Init') {
             steps {
                 sh 'terraform init'
+            }
+        }
+
+        stage('Terraform Refresh') {
+            steps {
+                sh 'terraform refresh'
+            }
+        }
+
+        stage('Terraform format') {
+            steps {
+                sh 'terraform fmt'
+            }
+        }
+
+        stage('Terraform Validate') {
+            steps {
+                sh 'terraform Validate'
             }
         }
 
