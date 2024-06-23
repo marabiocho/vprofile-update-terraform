@@ -39,12 +39,12 @@ pipeline {
 
         stage('Terraform plan') {
             steps {
-                sh 'terraform apply -auto-approve'
+                sh 'terraform plan'
             }
         }
-        stage('Terraform Apply') {
+        stage('Terraform Destroy') {
             steps {
-                sh 'terraform apply -auto-approve'
+                sh 'terraform Destroy -auto-approve'
             }
         }
     }
