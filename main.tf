@@ -128,55 +128,7 @@ resource "aws_route_table" "private_rt_2" {
   }
 }
 
-# Internet-facing Application Load Balancer
-resource "aws_lb" "application" {
-  name               = "vprofile-lb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.loadbalancer_sg.id]
-  subnets = [
-    aws_subnet.public_subnet_1.id,
-    aws_subnet.public_subnet_2.id,
-  ]
 
-  tags = {
-    Name = "vprofile-lb"
-  }
-}
-
-# Listener for Application Load Balancer
-resource "aws_lb_listener" "http_listener" {
-  load_balancer_arn = aws_lb.application.arn
-  port              = 80
-  protocol          = "HTTP"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.application.arn
-  }
-}
-
-# Target Group for Application Load Balancer
-resource "aws_lb_target_group" "application" {
-  name     = "vprofile-tg"
-  port     = 8080
-  protocol = "HTTP"
-  vpc_id   = aws_vpc.vprofile_vpc.id
-
-  health_check {
-    path                = "/"
-    port                = "8080"
-    protocol            = "HTTP"
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    interval            = 30
-  }
-
-  tags = {
-    Name = "vprofile-tg"
-  }
-}
 
 # Security Group for Application Load Balancer
 resource "aws_security_group" "loadbalancer_sg" {
