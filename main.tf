@@ -396,5 +396,3 @@ resource "aws_autoscaling_group" "mysql_asg" {
     aws_subnet.private_subnet_2.id,
   ]
 }
-
-
