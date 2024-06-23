@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/marabiocho/Vprofile-terrafom-code.git', branch: 'main'
+                git url: 'https://github.com/marabiocho/vprofile-update-terraform.git', branch: 'main'
             }
         }
 
